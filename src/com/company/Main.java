@@ -22,7 +22,7 @@ public class Main {
 
         userService.getById(1);
         System.out.println("------");
-        userService.getById(5);
+        userService.getById(6);
         System.out.println("------");
         userService.getAllUsers();
         System.out.println("------");

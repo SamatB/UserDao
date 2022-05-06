@@ -6,7 +6,10 @@ import com.company.MyException;
 import com.company.Service.UserService;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class UserServiceImpl implements UserService {
@@ -22,8 +25,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getById(int id) {
+    public void getById(int id) throws MyException {
+//        User [] users = userDaos.getUsers().toArray(new User[0]);
+//        ArrayList<Integer> list = new ArrayList<>();
+////        Arrays.stream(users).filter(x -> x.getId() == id).forEach(x-> System.out.println(x));
+//        Arrays.stream(users).forEach(x -> {
+//            list.add(x.getId());
+//            if(x.getId() == id){
+//                System.out.println(x);}
+//            try {
+//                if(!list.contains(id)) {
+//                    throw new MyException("There is no user with this id!");
+//                }
+//            } catch (RuntimeException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        }); Стрим менен чыгаруу татаал болуп, аткара алган жокмун.
+
         ArrayList<Integer> list = new ArrayList<>();
+
         for (User us : userDaos.users) {
             list.add(us.getId());
             if (us.getId() == id) {
@@ -47,8 +67,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void getAllUsers() {
-        for (User uss : userDaos.users) {
-            System.out.println(uss);
-        }
+        User [] users = userDaos.getUsers().toArray(new User[0]);
+        Arrays.stream(users).forEach(x -> System.out.println(x));
+
     }
 }
